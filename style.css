@@ -9,7 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background-image: url('https://assets.onecompiler.app/43dbdeufd/43dd37ycv/1000112755.png'); /* ใส่ชื่อไฟล์รูปที่คุณต้องการใช้ */
+    background-image: url('NarberBG.png'); /* ใส่ชื่อไฟล์รูปที่คุณต้องการใช้ */
     background-size: cover; /* ใช้ cover เพื่อให้รูปครอบคลุมพื้นที่ทั้งหมด */
     background-position: center;
     color: white;
