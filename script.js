@@ -1,24 +1,23 @@
-const countdownElement = document.getElementById('countdown');
-const targetDate = new Date('2025-04-22T09:00:00+07:00'); // เวลาเป้าหมายตาม GMT+7
+// เวลานับถอยหลัง: 26 พฤษภาคม 2025 เวลา 00:00 GMT+7
+const targetDate = new Date("2025-05-26T00:07:00+07:00").getTime();
 
 function updateCountdown() {
-    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const now = new Date().toLocaleString('en-US', { timeZone: userTimeZone });
-    const currentDate = new Date(now);
+  const now = new Date().getTime();
+  const distance = targetDate - now;
 
-    const difference = targetDate - currentDate;
+  if (distance <= 0) {
+    document.getElementById("countdown").innerHTML = "หมดเวลาแล้ว!";
+    return;
+  }
 
-    if (difference <= 0) {
-        countdownElement.textContent = "Countdown Complete!";
-        return;
-    }
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
 
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-    countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  document.getElementById("countdown").innerHTML =
+    `${days} วัน ${hours} ชม. ${minutes} นาที ${seconds} วินาที`;
 }
 
 setInterval(updateCountdown, 1000);
+updateCountdown();
